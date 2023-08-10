@@ -22,6 +22,8 @@ $route = Route::current()->getName();
     <!-- Pick date -->
     <link rel="stylesheet" href="{{asset('admin/vendor/pickadate/themes/default.css')}}">
     <link rel="stylesheet" href="{{asset('admin/vendor/pickadate/themes/default.date.css')}}">
+    {{-- Sweet Alert --}}
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     @notifyCss
     @include('notify::components.notify')
     <style>
@@ -217,14 +219,14 @@ $route = Route::current()->getName();
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>
-                    <li><a href="javascript:void()" aria-expanded="false">
+                    <li><a href="{{route('dashboard')}}" aria-expanded="false">
                             <i class="la la-home"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li><a class="ai-icon" href="event-management.html" aria-expanded="false">
+                    <li><a class="ai-icon" href="{{route('class.view')}}" aria-expanded="false">
                             <i class="la la-calendar"></i>
-                            <span class="nav-text">Event Management</span>
+                            <span class="nav-text">Add Class</span>
                         </a>
                     </li>
                     <li class="nav-label">Teachers</li>
@@ -243,8 +245,8 @@ $route = Route::current()->getName();
                             <span class="nav-text">Students</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="all-students.html">All Students</a></li>
-                            <li><a href="add-student.html">Add Students</a></li>
+                            <li><a href="{{route('students.view')}}">All Students</a></li>
+                            <li><a href="{{route('students.add')}}">Add Students</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Courses</li>
@@ -347,6 +349,11 @@ $route = Route::current()->getName();
     <!--**********************************
         Scripts
     ***********************************-->
+
+    {{-- Sweet Alert CDN --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     
     <!-- Required vendors -->
     <script src="{{ asset('admin/vendor/global/global.min.js')}} "></script>
@@ -381,6 +388,33 @@ $route = Route::current()->getName();
         
         <!-- Pickdate -->
         <script src="{{asset('admin/js/plugins-init/pickadate-init.js')}}"></script>
+        {{-- Sweet Alert for before download --}}
+        <script>
+            $(function() {
+                $(document).on('click', '#delete', function(e) {
+                  e.preventDefault();
+                    var link = $(this).attr("href");
+                    Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                    window.location.href = link;
+                    Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                    )
+                    }
+                    })
+                });
+            });
+          </script>
      @notifyJs
     
 </body>

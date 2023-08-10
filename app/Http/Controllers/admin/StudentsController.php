@@ -4,91 +4,95 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\admin\TeacherModel;
+use App\Models\admin\StudentModel;
 use Illuminate\Support\Facades\Validator;
 
-class TeachersController extends Controller
+class StudentsController extends Controller
 {
-    // add teachers
+    // add students
     public function add()
     {
-        return view('pages.admin.teachers.addTeacher');
+        return view('pages.admin.students.addStudent');
     }
-    // view teachers
+    // view students
     public function view()
     {
-        $data = TeacherModel::all();
-        return view('pages.admin.teachers.viewTeacher',compact('data'));
+        $data = StudentModel::all();
+        return view('pages.admin.students.viewStudent',compact('data'));
     }
 
-    // store teachers
+    // store students
     public function store(Request $request)
     {
          // validate Data
          $validatedData = Validator::make($request->all(),[
-            'email' => 'required|unique:teacher_models',
+            'email' => 'required|unique:student_models',
         ]);
 
         if($validatedData->fails()){
             notify()->success('Email Already Taken !');
             return redirect()->back()->withInput();
         }else{
-            $data = new TeacherModel;
+            $code = rand(0000,9999);
+            $data = new StudentModel;
+            $data->roll = $code;
             $data->fName = $request->fName;
             $data->lName = $request->lName;
             $data->email = $request->email;
-            $data->jDate = $request->jDate;
+            $data->rDate = $request->rDate;
             $data->mobile = $request->mobile;
             $data->gender = $request->gender;
-            $data->designation = $request->designation;
-            $data->dept = $request->dept;
+            $data->class = $request->class;
             $data->bDate = $request->bDate;
-            $data->education = $request->education;
+            $data->pName = $request->pName;
+            $data->pMobile = $request->pMobile;
+            $data->blood = $request->blood;
             $data->address = $request->address;
             //For Image
             if($request->file('pImg')){
                 $file = $request->file('pImg');
                 $filename = date('Ymdhi').$file->getClientOriginalName();
-                $file->move(public_path('admin/teachers'),$filename);
+                $file->move(public_path('admin/students'),$filename);
                 $data['pImg'] = $filename;
             }
             $data->save();
-            notify()->success('Teachers Insert Successfully !');
-            return redirect()->route('teachers.add');
+            notify()->success('Students Insert Successfully !');
+            return redirect()->route('students.add');
         }
     }
 
-    // Edit Teacher
+    // Edit Student
     public function edit($id)
     {
-        $data = TeacherModel::find($id);
-        return view('pages.admin.teachers.editTeacher',compact('data'));
+        $data = StudentModel::find($id);
+        return view('pages.admin.students.editStudent',compact('data'));
     }
 
-    // update Teacher
+    // update Student
     public function update(Request $request, $id)
     {
-        $data = TeacherModel::find($id);
+        $data = StudentModel::find($id);
         $data->fName = $request->fName;
         $data->lName = $request->lName;
-        $data->jDate = $request->jDate;
+        $data->rDate = $request->rDate;
         $data->mobile = $request->mobile;
-        $data->designation = $request->designation;
         $data->bDate = $request->bDate;
-        $data->education = $request->education;
+        $data->pName = $request->pName;
+        $data->pMobile = $request->pMobile;
+        $data->blood = $request->blood;
         $data->address = $request->address;
         $data->save();
-        notify()->success('Teacher Update Successfully !');
-        return redirect()->route('teachers.view');
+        notify()->success('Student Update Successfully !');
+        return redirect()->route('students.view');
     }
 
-    // delete Teacher
+    // delete Student
     public function destroy($id)
     {
-        $data = TeacherModel::find($id);
+        $data = StudentModel::find($id);
         $data->delete();
         notify()->success('Delete Successfully !');
-        return redirect()->route('teachers.view');
+        return redirect()->route('students.view');
     }
 
 
