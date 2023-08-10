@@ -18,7 +18,17 @@ $route = Route::current()->getName();
     <link rel="stylesheet" href="{{ asset('admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}} ">
     <link rel="stylesheet" href="{{ asset('admin/css/style.css')}} ">
     <link rel="stylesheet" href="{{ asset('admin/css/skin-2.css')}} ">
-
+    <link href="{{asset('admin/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <!-- Pick date -->
+    <link rel="stylesheet" href="{{asset('admin/vendor/pickadate/themes/default.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/vendor/pickadate/themes/default.date.css')}}">
+    @notifyCss
+    @include('notify::components.notify')
+    <style>
+        .notify {
+            z-index: 10000 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -223,11 +233,11 @@ $route = Route::current()->getName();
                             <span class="nav-text">Teachers</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="all-professors.html">All Teachers</a></li>
-                            <li><a href="add-professor.html">Add Teachers</a></li>
+                            <li><a href="{{route('teachers.view')}}">All Teachers</a></li>
+                            <li><a href="{{route('teachers.add')}}">Add Teachers</a></li>
                         </ul>
                     </li>
-                    <li class="nav-label">Students</li>
+                    <li class="nav-label"></li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-users"></i>
                             <span class="nav-text">Students</span>
@@ -337,6 +347,7 @@ $route = Route::current()->getName();
     <!--**********************************
         Scripts
     ***********************************-->
+    
     <!-- Required vendors -->
     <script src="{{ asset('admin/vendor/global/global.min.js')}} "></script>
     <script src="{{ asset('admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}} "></script>
@@ -355,11 +366,23 @@ $route = Route::current()->getName();
     <!-- Demo scripts -->
     <script src="{{ asset('admin/js/dashboard/dashboard-3.js')}} "></script>
 
+    <!-- Datatable -->
+    <script src="{{asset('admin/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/js/plugins-init/datatables.init.js')}}"></script>
+
     <!-- Svganimation scripts -->
     <script src="{{ asset('admin/vendor/svganimation/vivus.min.js')}} "></script>
     <script src="{{ asset('admin/vendor/svganimation/svg.animation.js')}} "></script>
     <script src="{{ asset('admin/js/styleSwitcher.js')}} "></script>
-
+    	<!-- pickdate -->
+        <script src="{{asset('admin/vendor/pickadate/picker.js')}}"></script>
+        <script src="{{asset('admin/vendor/pickadate/picker.time.js')}}"></script>
+        <script src="{{asset('admin/vendor/pickadate/picker.date.js')}}"></script>
+        
+        <!-- Pickdate -->
+        <script src="{{asset('admin/js/plugins-init/pickadate-init.js')}}"></script>
+     @notifyJs
+    
 </body>
 
 </html>
