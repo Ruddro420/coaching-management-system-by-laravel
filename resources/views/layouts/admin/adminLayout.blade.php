@@ -280,8 +280,8 @@ $route = Route::current()->getName();
                             <span class="nav-text">Results</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="chart-flot.html">Daily</a></li>
-                            <li><a href="chart-morris.html">Monthly</a></li>
+                            <li><a href="chart-flot.html">View Result</a></li>
+                            <li><a href="chart-morris.html">Add Result</a></li>
                             <li><a href="chart-chartjs.html">Early</a></li>
                         </ul>
                     </li>

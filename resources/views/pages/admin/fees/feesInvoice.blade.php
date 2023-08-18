@@ -1,5 +1,16 @@
 @extends('layouts.admin.adminLayout')
 @section('content')
+<style>
+    .invoice-content{
+        padding: 20px;
+        text-align: center;
+    }
+    .invoice-content h1{
+        font-size: 35px;
+        font-weight: 900;
+        margin-bottom: 10px;
+    }
+</style>
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
@@ -17,7 +28,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Roll No.</label>
                                     <input placeholder="Enter roll number" name="roll" type="number" class="form-control" required>
-                                    <button class="btn btn-info mt-3">Generate Invoice</button>
+                                    <button class="btn btn-info mt-3">Fees Report</button>
                                 </div>
                             </div>
                         </div>
@@ -38,9 +49,15 @@
         <div class="row">
             <div class="col-lg-12">
                 
-                <div class="card mt-3">
-                    <div class="card-header"> <h2>Invoice</h2> </div>
-                        <div class="table-responsive-sm">
+                <div class="card mt-3" id="content-to-print">
+                   <div class="invoice-content">
+                    <h1>Fees Report</h1>
+                    <b><h2>Omuk Coacing Center</h2>
+                        <h5>Rangpur , 5700 #Sadar</h5></b>
+                    <b>Email: omuk@gmail.com</b> <br>
+                    <b>Phone: 01876423</b><br>
+                   </div>
+                        <div class="table-responsive-sm mt-5">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -79,10 +96,10 @@
                                 </table>
                             </div>
                         </div> --}}
-                        <div class="row">
-                            <div class="col-lg-12 text-right">
-                                <button onclick="javascript:window.print();" class="btn btn-info bg-info" type="button"> <i class="fa fa-print"></i> Print </button>
-                            </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <button id="print-button" class="btn btn-info bg-info" type="button"> <i class="fa fa-print"></i> Print </button>
                         </div>
                     </div>
                 </div> 
@@ -90,10 +107,57 @@
         </div>
 @else
 
-@endif
+@endif  
+</div>
+</div>
 
-    
-</div>
-</div>
+
+<script>
+    document.getElementById("print-button").addEventListener("click", function() {
+        var contentToPrint = document.getElementById("content-to-print").innerHTML;
+        var printWindow = window.open("", "_blank");
+        
+        printWindow.document.open();
+        printWindow.document.write('<html><head><title>Print</title>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(contentToPrint);
+        printWindow.document.write('</body></html>');
+        
+        // Include your CSS stylesheet to maintain styling
+        printWindow.document.write(`<style>
+            .invoice-content{
+        padding: 20px;
+        text-align: center;
+    }
+    .invoice-content h1{
+        font-size: 35px;
+        font-weight: 900;
+        margin-bottom: 10px;
+    }
+    td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+</style>`);
+        
+        printWindow.document.close();
+        
+        // Delay the print function to allow styles to load
+        printWindow.setTimeout(function() {
+            printWindow.print();
+            printWindow.close();
+        }, 500); // Adjust the delay time if needed
+    });
+</script>
 
 @endsection

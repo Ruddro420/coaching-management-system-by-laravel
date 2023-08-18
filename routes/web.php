@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\ClassController;
 use App\Http\Controllers\admin\CourseController;
 use App\Http\Controllers\admin\StuffController;
 use App\Http\Controllers\admin\FeesController;
+use App\Http\Controllers\admin\ResultController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -81,6 +82,15 @@ Route::get('/fees/delete/{id}', [FeesController::class,'destroy'])->name('fees.d
 Route::get('/invoice/search', [FeesController::class,'invoiceSearch'])->name('invoice.search');
 Route::post('/invoice/search', [FeesController::class,'invoiceSearch'])->name('invoice.search');
 });
+/* Manage Result Here ######### */
+Route::prefix('dashboard')->middleware('auth')->group(function(){
+    Route::get('/result/view', [ResultController::class,'view'])->name('result.view');
+    Route::get('/result/add', [ResultController::class,'add'])->name('result.add');
+    Route::post('/result/store', [ResultController::class,'store'])->name('result.store');
+    Route::get('/result/edit/{id}', [ResultController::class,'edit'])->name('result.edit');
+    Route::post('/result/update/{id}', [ResultController::class,'update'])->name('result.update');
+    Route::get('/result/delete/{id}', [ResultController::class,'destroy'])->name('result.delete');
+    });
 
 
 
