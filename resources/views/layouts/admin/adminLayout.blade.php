@@ -167,7 +167,7 @@ $route = Route::current()->getName();
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <img src="{{('admin/images/profile/education/pic1.jpg')}}" width="20" alt="">
+                                    <img src="{{asset('admin/images/profile/education/pic1.jpg')}}" width="20" alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="app-profile.html" class="dropdown-item ai-icon">
@@ -229,6 +229,11 @@ $route = Route::current()->getName();
                             <span class="nav-text">Add Class</span>
                         </a>
                     </li>
+                    <li><a class="ai-icon" href="{{route('course.view')}}" aria-expanded="false">
+                            <i class="la la-graduation-cap"></i>
+                            <span class="nav-text">Add Course</span>
+                        </a>
+                    </li>
                     <li class="nav-label">Teachers</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -249,33 +254,14 @@ $route = Route::current()->getName();
                             <li><a href="{{route('students.add')}}">Add Students</a></li>
                         </ul>
                     </li>
-                    <li class="nav-label">Courses</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="la la-graduation-cap"></i>
-                            <span class="nav-text">Courses</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="all-courses.html">All Courses</a></li>
-                            <li><a href="add-courses.html">Add Courses</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="la la-building"></i>
-                            <span class="nav-text">Class</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="all-departments.html">All Class</a></li>
-                            <li><a href="add-departments.html">Add Class</a></li>
-                        </ul>
-                    </li>
                     <li class="nav-label">Others</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-users"></i>
                             <span class="nav-text">Staff</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="all-staff.html">All Staff</a></li>
-                            <li><a href="add-staff.html">Add Staff</a></li>
+                            <li><a href="{{route('stuff.view')}}">All Staff</a></li>
+                            <li><a href="{{route('stuff.add')}}">Add Staff</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -283,9 +269,9 @@ $route = Route::current()->getName();
                             <span class="nav-text">Fees</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="fees-collection.html">Fees Collection</a></li>
-                            <li><a href="add-fees.html">Add Fees</a></li>
-                            <li><a href="fees-receipt.html">Fees Receipt</a></li>
+                            <li><a href="{{route('fees.view')}}">Fees Collection</a></li>
+                            <li><a href="{{route('fees.add')}}">Add Fees</a></li>
+                            <li><a href="{{route('invoice.search')}}">Fees Receipt</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Notice</li>

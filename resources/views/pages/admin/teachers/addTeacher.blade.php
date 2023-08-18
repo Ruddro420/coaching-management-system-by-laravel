@@ -80,18 +80,10 @@
                                     <div class="form-group">
                                         <label class="form-label">Department</label>
                                         <select name="dept" class="form-control">
-                                            <option value="Department">Department</option>
-                                            <option value="html">HTML</option>
-                                            <option value="css">CSS</option>
-                                            <option value="javascript">JavaScript</option>
-                                            <option value="angular">Angular</option>
-                                            <option value="angular">React</option>
-                                            <option value="vuejs">Vue.js</option>
-                                            <option value="ruby">Ruby</option>
-                                            <option value="php">PHP</option>
-                                            <option value="asp">ASP.NET</option>
-                                            <option value="python">Python</option>
-                                            <option value="mysql">MySQL</option>
+                                            <option>Select Subject/Course</option>
+                                            @foreach ($data as $value)
+                                            <option value="{{$value->course}}">{{$value->course}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

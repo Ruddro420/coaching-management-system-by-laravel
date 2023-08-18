@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\TeacherModel;
+use App\Models\admin\CourseModel;
 use Illuminate\Support\Facades\Validator;
 
 class TeachersController extends Controller
@@ -12,7 +13,8 @@ class TeachersController extends Controller
     // add teachers
     public function add()
     {
-        return view('pages.admin.teachers.addTeacher');
+        $data = CourseModel::all();
+        return view('pages.admin.teachers.addTeacher',compact('data'));
     }
     // view teachers
     public function view()

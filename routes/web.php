@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\TeachersController;
 use App\Http\Controllers\admin\StudentsController;
 use App\Http\Controllers\admin\ClassController;
+use App\Http\Controllers\admin\CourseController;
+use App\Http\Controllers\admin\StuffController;
+use App\Http\Controllers\admin\FeesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,6 +32,15 @@ Route::get('/class/edit/{id}', [ClassController::class,'edit'])->name('class.edi
 Route::post('/class/update/{id}', [ClassController::class,'update'])->name('class.update');
 Route::get('/class/delete/{id}', [ClassController::class,'destroy'])->name('class.delete');
 });
+/* Manage Course Here ######### */
+Route::prefix('dashboard')->middleware('auth')->group(function(){
+Route::get('/course/view', [CourseController::class,'view'])->name('course.view');
+Route::get('/course/add', [CourseController::class,'add'])->name('course.add');
+Route::post('/course/store', [CourseController::class,'store'])->name('course.store');
+Route::get('/course/edit/{id}', [CourseController::class,'edit'])->name('course.edit');
+Route::post('/course/update/{id}', [CourseController::class,'update'])->name('course.update');
+Route::get('/course/delete/{id}', [CourseController::class,'destroy'])->name('course.delete');
+});
 
 /* Manage Teachers Here ######### */
 Route::prefix('dashboard')->middleware('auth')->group(function(){
@@ -47,6 +59,27 @@ Route::post('/students/store', [StudentsController::class,'store'])->name('stude
 Route::get('/students/edit/{id}', [StudentsController::class,'edit'])->name('students.edit');
 Route::post('/students/update/{id}', [StudentsController::class,'update'])->name('students.update');
 Route::get('/students/delete/{id}', [StudentsController::class,'destroy'])->name('students.delete');
+});
+/* Manage Stuff Here ######### */
+Route::prefix('dashboard')->middleware('auth')->group(function(){
+Route::get('/stuff/view', [StuffController::class,'view'])->name('stuff.view');
+Route::get('/stuff/add', [StuffController::class,'add'])->name('stuff.add');
+Route::post('/stuff/store', [StuffController::class,'store'])->name('stuff.store');
+Route::get('/stuff/edit/{id}', [StuffController::class,'edit'])->name('stuff.edit');
+Route::post('/stuff/update/{id}', [StuffController::class,'update'])->name('stuff.update');
+Route::get('/stuff/delete/{id}', [StuffController::class,'destroy'])->name('stuff.delete');
+});
+/* Manage Fees Here ######### */
+Route::prefix('dashboard')->middleware('auth')->group(function(){
+Route::get('/fees/view', [FeesController::class,'view'])->name('fees.view');
+Route::get('/fees/add', [FeesController::class,'add'])->name('fees.add');
+Route::post('/fees/store', [FeesController::class,'store'])->name('fees.store');
+Route::get('/fees/edit/{id}', [FeesController::class,'edit'])->name('fees.edit');
+Route::post('/fees/update/{id}', [FeesController::class,'update'])->name('fees.update');
+Route::get('/fees/delete/{id}', [FeesController::class,'destroy'])->name('fees.delete');
+/* Fees Invoice */
+Route::get('/invoice/search', [FeesController::class,'invoiceSearch'])->name('invoice.search');
+Route::post('/invoice/search', [FeesController::class,'invoiceSearch'])->name('invoice.search');
 });
 
 
