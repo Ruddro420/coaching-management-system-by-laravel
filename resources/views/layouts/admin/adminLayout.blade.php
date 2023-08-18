@@ -59,7 +59,7 @@ $route = Route::current()->getName();
         ***********************************-->
         <div class="nav-header">
             <a href="index.html" class="brand-logo">
-                Coaching Management System
+                D-CMS
                 <!--  <img class="logo-abbr" src="images/logo-white.png" alt="">
                 <img class="logo-compact" src="images/logo-text-white.png" alt="">
                 <img class="brand-title" src="images/logo-text-white.png" alt=""> -->
@@ -276,23 +276,25 @@ $route = Route::current()->getName();
                     </li>
                     <li class="nav-label">Notice</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="la la-users"></i>
-                            <span class="nav-text">Results</span>
+                            <i class="la la-bell-o"></i>
+                            <span class="nav-text">Results / Notice</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="chart-flot.html">View Result</a></li>
-                            <li><a href="chart-morris.html">Add Result</a></li>
-                            <li><a href="chart-chartjs.html">Early</a></li>
+                            <li><a href="{{route('result.view')}}">View Result / Notice</a></li>
+                            <li><a href="{{route('result.add')}}">Add Result / Notice</a></li>
                         </ul>
                     </li>
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                            <i class="la la-signal"></i>
-                            <span class="nav-text">Reports</span>
+                    <li class="nav-label">Website Maintaince</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-bullhorn"></i>
+                            <span class="nav-text">Page</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="chart-flot.html">Daily</a></li>
-                            <li><a href="chart-morris.html">Monthly</a></li>
-                            <li><a href="chart-chartjs.html">Early</a></li>
+                            <li><a href="{{route('result.view')}}">Home</a></li>
+                            <li><a href="{{route('result.add')}}">About</a></li>
+                            <li><a href="{{route('result.add')}}">Courses</a></li>
+                            <li><a href="{{route('result.add')}}">Notice</a></li>
+                            <li><a href="{{route('result.add')}}">Admission </a></li>
                         </ul>
                     </li>
                 </ul>

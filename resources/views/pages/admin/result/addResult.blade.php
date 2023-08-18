@@ -7,14 +7,14 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Add Stuffs</h4>
+                    <h4>Add Results</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="add-Stuffs.html">Stuffs</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Add Stuffs</a></li>
+                    <li class="breadcrumb-item active"><a href="add-Results.html">Results</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Add Results</a></li>
                 </ol>
             </div>
         </div>
@@ -26,80 +26,38 @@
                         <h5 class="card-title">Basic Info</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('stuff.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('result.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+                                
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">First Name</label>
-                                        <input type="text" name="fName" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Last Name</label>
-                                        <input type="text" name="lName" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Email Here</label>
-                                        <input type="text" name="email" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Joining Date</label>
-                                        <input type="date" name="jDate" class="datepicker-default form-control"
+                                        <label class="form-label">Upload Date</label>
+                                        <input placeholder="Set Date" name="date" class="datepicker-default form-control"
                                             id="datepicker" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">Mobile Number</label>
-                                        <input type="text" name="mobile" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Gender</label>
-                                        <select name="gender" class="form-control">
-                                            <option value="Gender">Gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                        <label class="form-label">Class</label>
+                                        <select name="class" class="form-control" required>
+                                            <option value="">Select Class</option>
+                                            @foreach ($data as $item)
+                                            <option value="{{$item->class}}">{{$item->class}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">Date of Birth</label>
-                                        <input type="date" name="bDate" class="datepicker-default form-control"
-                                            id="datepicker1" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Education</label>
-                                        <input name="education" type="text" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Address</label>
-                                        <input name="address" type="text" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Profile Image</label>
+                                        <label class="form-label">Upload File</label>
                                         <div class="form-group fallback w-100">
-                                            <input name="pImg" type="file" class="dropify" data-default-file="" required>
+                                            <input name="rFile" type="file" class="dropify" data-default-file="" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <button type="submit" class="btn btn-success">Submit</button>
-                                    <button type="submit" class="btn btn-light">Cancel</button>
                                 </div>
                             </div>
                         </form>

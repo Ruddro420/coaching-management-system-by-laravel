@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ResultModel extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'date',
+        'class',
+        'rFile',
+    ];
 }

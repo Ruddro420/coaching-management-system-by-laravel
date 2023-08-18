@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\ResultModel;
+use App\Models\admin\ClassModel;
 use Illuminate\Support\Facades\Validator;
 
 class ResultController extends Controller
@@ -12,7 +13,8 @@ class ResultController extends Controller
     // add result
     public function add()
     {
-        return view('pages.admin.result.addResult');
+        $data = ClassModel::all();
+        return view('pages.admin.result.addResult',compact('data'));
     }
     // view result
     public function view()
@@ -24,56 +26,42 @@ class ResultController extends Controller
     // store result
     public function store(Request $request)
     {
-         // validate Data
-         $validatedData = Validator::make($request->all(),[
-            'email' => 'required|unique:result_models',
-        ]);
-
-        if($validatedData->fails()){
-            notify()->success('Email Already Taken !');
-            return redirect()->back()->withInput();
-        }else{
             $data = new ResultModel;
-            $data->fName = $request->fName;
-            $data->lName = $request->lName;
-            $data->email = $request->email;
-            $data->jDate = $request->jDate;
-            $data->mobile = $request->mobile;
-            $data->gender = $request->gender;
-            $data->bDate = $request->bDate;
-            $data->education = $request->education;
-            $data->address = $request->address;
-            //For Image
-            if($request->file('pImg')){
-                $file = $request->file('pImg');
+            $data->date = $request->date;
+            $data->class = $request->class;
+            //For Result
+            if($request->file('rFile')){
+                $file = $request->file('rFile');
                 $filename = date('Ymdhi').$file->getClientOriginalName();
                 $file->move(public_path('admin/result'),$filename);
-                $data['pImg'] = $filename;
+                $data['rFile'] = $filename;
             }
             $data->save();
             notify()->success('Result Insert Successfully !');
             return redirect()->route('result.add');
-        }
     }
 
     // Edit result
     public function edit($id)
     {
         $data = ResultModel::find($id);
-        return view('pages.admin.result.editResult',compact('data'));
+        $rClass = ClassModel::all();
+        return view('pages.admin.result.editResult',compact('data','rClass'));
     }
 
     // update result
     public function update(Request $request, $id)
     {
         $data = ResultModel::find($id);
-        $data->fName = $request->fName;
-        $data->lName = $request->lName;
-        $data->jDate = $request->jDate;
-        $data->mobile = $request->mobile;
-        $data->bDate = $request->bDate;
-        $data->education = $request->education;
-        $data->address = $request->address;
+        $data->date = $request->date;
+        $data->class = $request->class;
+        //For Result
+        if($request->file('rFile')){
+            $file = $request->file('rFile');
+            $filename = date('Ymdhi').$file->getClientOriginalName();
+            $file->move(public_path('admin/result'),$filename);
+            $data['rFile'] = $filename;
+        }
         $data->save();
         notify()->success('Result Update Successfully !');
         return redirect()->route('result.view');

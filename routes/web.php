@@ -9,20 +9,24 @@ use App\Http\Controllers\admin\CourseController;
 use App\Http\Controllers\admin\StuffController;
 use App\Http\Controllers\admin\FeesController;
 use App\Http\Controllers\admin\ResultController;
+use App\Http\Controllers\admin\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+/* Route::get('/dashboard', function () {
     return view('pages/admin/dashboard/dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard'); */
 
 /* Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); */
+
+/* Manage Dashboard Here ######### */
+Route::get('/dashboard', [DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 /* Manage Class Here ######### */
 Route::prefix('dashboard')->middleware('auth')->group(function(){
