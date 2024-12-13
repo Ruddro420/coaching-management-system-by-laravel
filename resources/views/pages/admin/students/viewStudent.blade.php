@@ -44,6 +44,24 @@
                             <div class="card-header">
                                 <h4 class="card-title">All Students </h4>
                                 <!-- <a href="{{route('students.add')}}" class="btn btn-primary">+ Add new</a> -->
+                                <div class="card-header">
+                                    
+                                    <form method="GET" action="{{ route('students.view') }}" class="form-inline">
+                                        <label for="classFilter" class="mr-2">Filter by Class:</label>
+                                        <select name="class" id="classFilter" class="form-control mr-2">
+                                            <option value="">All Classes</option>
+                                            @foreach ($data->unique('classname') as $class)
+                                            <option value="{{ $class->classname }}" {{ request('class') == $class->classname ? 'selected' : '' }}>
+                                                {{ $class->classname }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        <button type="submit" class="btn bg-primary text-white">Filter</button>
+                                        <a href="{{ route('students.view') }}" class="btn btn-secondary ml-2">Reset Filter</a>
+                                    </form>
+                                </div>
+
+
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

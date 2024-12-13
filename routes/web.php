@@ -101,7 +101,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::get('/expense/view', [ExpenseController::class,'view'])->name('expense.view');
     Route::get('/expense/add', [ExpenseController::class,'add'])->name('expense.add');
     Route::post('/expense/store', [ExpenseController::class,'store'])->name('expense.store');
-    Route::get('/result/delete/{id}', [ExpenseController::class,'destroy'])->name('expense.delete');
+    Route::get('/expense/delete/{id}', [ExpenseController::class,'destroy'])->name('expense.delete');
 /*     Route::get('/result/add', [ResultController::class,'add'])->name('result.add');
     Route::post('/result/store', [ResultController::class,'store'])->name('result.store');
     Route::get('/result/edit/{id}', [ResultController::class,'edit'])->name('result.edit');

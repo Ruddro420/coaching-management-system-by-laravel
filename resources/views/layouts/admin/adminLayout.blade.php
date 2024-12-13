@@ -220,8 +220,8 @@ $route = Route::current()->getName();
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">Ali Fiad Ruddro</a>
-                    2023
+                <p>Copyright © Designed &amp; Developed by <a  target="_blank">Ruddro & Sadhin</a>
+                    2024-25
                 </p>
             </div>
         </div>

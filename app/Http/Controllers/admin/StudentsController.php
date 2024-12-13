@@ -18,14 +18,24 @@ class StudentsController extends Controller
         return view('pages.admin.students.addStudent', compact('data'));
     }
     // view students
-    public function view()
-    {
-        // Get all records except the first one using skip() and take()
-        $data = AdmissionModel::skip(1)->take(PHP_INT_MAX)->get();
+    public function view(Request $request)
+{
+    // Get the 'class' filter value from the request
+    $classFilter = $request->get('class');
 
-        // Pass the data to the view
-        return view('pages.admin.students.viewStudent', compact('data'));
+    // Fetch students with optional filtering and skip the first record
+    if (!empty($classFilter)) {
+        $data = AdmissionModel::where('classname', $classFilter)->get();
+    } else {
+        $data = AdmissionModel::skip(1)
+            ->take(PHP_INT_MAX)
+            ->get();
     }
+
+    // Pass the data and filter value to the view
+    return view('pages.admin.students.viewStudent', compact('data', 'classFilter'));
+}
+
 
     // store students
     public function store(Request $request)

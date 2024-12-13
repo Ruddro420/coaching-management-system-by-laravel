@@ -38,7 +38,7 @@
                 <div class="widget-stat card bg-secondary overflow-hidden">
                     <div class="card-header pb-3">
                         <h3 class="card-title text-white">Total Pending Fees</h3>
-                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$pendingFees}}</h5>
+                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$pendingFees ? $pendingFees : 0}}</h5>
                     </div>
                     <div class="card-body p-0 mt-2">
                         <div class="px-4"><span class="bar1"
@@ -51,7 +51,7 @@
                 <div class="widget-stat card bg-danger overflow-hidden">
                     <div class="card-header pb-3">
                         <h3 class="card-title text-white">Fees Collection</h3>
-                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$totalFees}} ৳</h5>
+                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$totalFees ? $totalFees : 0}} ৳</h5>
                     </div>
                     <div class="card-body p-0 mt-1">
                         <span class="peity-line-2" data-width="100%">7,6,8,7,3,8,3,3,6,5,9,2,8</span>
@@ -62,7 +62,7 @@
                 <div class="widget-stat card bg-dark overflow-hidden">
                     <div class="card-header pb-3">
                         <h3 class="card-title text-white">Total Admission Fee</h3>
-                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$totalAdmissionFees}} ৳</h5>
+                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$totalAdmissionFees ? $totalAdmissionFees : 0}} ৳</h5>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 <div class="widget-stat card bg-secondary overflow-hidden">
                     <div class="card-header pb-3">
                         <h3 class="card-title text-white"> Admission Pending Fee</h3>
-                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$totalAdmissionPendingFees}} ৳</h5>
+                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$totalAdmissionPendingFees ? $totalAdmissionPendingFees : 0}} ৳</h5>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <div class="widget-stat card bg-primary overflow-hidden">
                     <div class="card-header pb-3">
                         <h3 class="card-title text-white"> Total Expense </h3>
-                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$totalExpense}} ৳</h5>
+                        <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> {{$totalExpense ? $totalExpense : 0}} ৳</h5>
                     </div>
                 </div>
             </div>

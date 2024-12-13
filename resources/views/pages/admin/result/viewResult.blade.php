@@ -39,7 +39,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
-                                                <th>Class</th>
+                                                <th>Name of notice</th>
                                                 <th>File</th>
                                                 <th>Action</th>
                                             </tr>
@@ -49,7 +49,7 @@
                                             @foreach ($data as $key => $value)
                                             <tr>
                                                 <td>{{$value->date}}</td>
-                                                <td>{{$value->class}}</td>
+                                                <td>{{$value->name}}</td>
                                                 <td>
 
                                                     <a target="_blank" href="{{(!empty($value->rFile))?url('admin/result/'.$value->rFile): url('admin/images/profile/small/pic3.jpg')}}" class="btn btn-sm btn-success text-white"><i

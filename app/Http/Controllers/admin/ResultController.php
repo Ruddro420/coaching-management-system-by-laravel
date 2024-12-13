@@ -28,6 +28,7 @@ class ResultController extends Controller
     {
             $data = new ResultModel;
             $data->date = $request->date;
+            $data->name = $request->name;
             $data->class = $request->class;
             //For Result
             if($request->file('rFile')){
@@ -54,6 +55,7 @@ class ResultController extends Controller
     {
         $data = ResultModel::find($id);
         $data->date = $request->date;
+        $data->name = $request->name;
         $data->class = $request->class;
         //For Result
         if($request->file('rFile')){
@@ -75,4 +77,17 @@ class ResultController extends Controller
         notify()->success('Delete Successfully !');
         return redirect()->route('result.view');
     }
+    // result api
+    public function getResults()
+{
+    // Retrieve all data from the ResultModel
+    $data = ResultModel::all();
+
+    // Return the data as a JSON response
+    return response()->json([
+        'success' => true,
+        'message' => 'Results retrieved successfully',
+        'data' => $data
+    ]);
+}
 }

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\StudentsController;
 use App\Http\Controllers\admin\FeesController;
+use App\Http\Controllers\admin\ClassController;
+use App\Http\Controllers\admin\ResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,9 @@ Route::get('/students/admission/{studentId}', [StudentsController::class, 'getAd
 Route::post('/students/fee', [FeesController::class, 'addFees']);
 Route::get('/getStudent/fee/{roll}/{month?}', [FeesController::class, 'getFees']);
 
+//class api
+Route::get('/getClass', [ClassController::class, 'getClassApi']);
+
+// result api
+
+Route::get('/getResult', [ResultController::class, 'getResults']);

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('result_models', function (Blueprint $table) {
             $table->id();
             $table->string('date')->nullable();
+            $table->string('name')->nullable();
             $table->string('class')->nullable();
             $table->string('rFile')->nullable();
             $table->timestamps();

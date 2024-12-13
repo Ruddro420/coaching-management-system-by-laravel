@@ -39,6 +39,13 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
+                                        <label class="form-label">Name Of Notice</label>
+                                        <input value="{{$data->name}}" placeholder="Name of notice" name="name" class=" form-control"
+                                           type="text" required>
+                                    </div>
+                                </div>
+                               <!--  <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
                                         <label class="form-label">Class</label>
                                         <select name="class" class="form-control" required>
                                             <option value="">Select Class</option>
@@ -49,7 +56,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Upload File</label>
